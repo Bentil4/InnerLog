@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Personal Mood Journal</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <main class="journal-app">
+      <aside class="journal-app__sidebar">
+        <section class="journal-app__entries"></section>
+      </aside>
+
+      <section class="journal-app__main">
+        <form class="journal-app__form">
+          <input type="text" name="title" placeholder="Entry Title" required />
+
+          <textarea
+            name="content"
+            placeholder="What's on your mind?"
+            required
+          ></textarea>
+
+          <select name="mood" required>
+            <option value="">Select Mood</option>
+          </select>
+
+          <button type="submit">Add Entry</button>
+        </form>
+
+        <section class="journal-app__filters">
+          <select name="mood-filter">
+            <option value="">All Moods</option>
+          </select>
+          <input type="text" name="search" placeholder="Search entries..." />
+        </section>
+      </section>
+    </main>
+
+    <script type="module" src="dist/journal.js"></script>
+  </body>
+</html>
