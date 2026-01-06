@@ -1,10 +1,12 @@
-$primary-color: #007bff;
+@use "./_variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .journal-app {
+  font-family: "Montserrat", sans-serif;
   display: flex;
   margin: 0 auto;
   padding: 20px;
-
   &__sidebar {
     margin-right: 20px;
     width: 250px;
@@ -27,27 +29,39 @@ $primary-color: #007bff;
   }
 
   .journal-entry {
+    background-color: $color-neutral-50;
     padding: 15px;
     border: 1px solid #ddd;
     border-radius: 8px;
 
     &--happy {
-      background-color: #ffeb3b;
+      border-left: 10px solid $happy-bg;
+      color: $happy-text;
     }
     &--sad {
-      background-color: #2196f3;
+      border-left: 10px solid $sad-bg;
+      color: $sad-text;
     }
-    // Add for other moods
+    &--motivated {
+      border-left: 10px solid $motivated-bg;
+      color: $motivated-text;
+    }
+    &--stressed {
+      border-left: 10px solid $stressed-bg;
+      color: $stressed-text;
+    }
+    &--calm {
+      border-left: 10px solid $calm-bg;
+      color: $calm-text;
+    }
 
     &__title {
       font-size: 1.2em;
     }
-    // Etc.
   }
 
   @media (max-width: 600px) {
     &__entries {
-      //   grid-template-columns: 1fr;
     }
   }
 }
