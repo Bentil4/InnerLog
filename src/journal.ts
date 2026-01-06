@@ -105,3 +105,13 @@ export function filterEntries(mood?: Mood, search?: string): Journal {
 export function getEntries(): Journal {
   return journal;
 }
+
+
+function init() {
+  journal = loadEntries();
+  setupForm();
+  setupFilters();
+  renderEntries(journal);
+}
+
+document.addEventListener("DOMContentLoaded", init);
