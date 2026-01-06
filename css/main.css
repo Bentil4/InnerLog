@@ -1,4 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 .journal-app {
+  font-family: "Montserrat", sans-serif;
   display: flex;
   margin: 0 auto;
   padding: 20px;
@@ -21,15 +23,30 @@
   gap: 20px;
 }
 .journal-app .journal-entry {
+  background-color: #f5f7fa;
   padding: 15px;
   border: 1px solid #ddd;
   border-radius: 8px;
 }
 .journal-app .journal-entry--happy {
-  background-color: #ffeb3b;
+  border-left: 10px solid #ffd966;
+  color: #4a3f1c;
 }
 .journal-app .journal-entry--sad {
-  background-color: #2196f3;
+  border-left: 10px solid #9aa0a6;
+  color: #1f1f1f;
+}
+.journal-app .journal-entry--motivated {
+  border-left: 10px solid #6bcf63;
+  color: #0f3d1e;
+}
+.journal-app .journal-entry--stressed {
+  border-left: 10px solid #e63946;
+  color: #fafafa;
+}
+.journal-app .journal-entry--calm {
+  border-left: 10px solid #a7c7e7;
+  color: #0f2a44;
 }
 .journal-app .journal-entry__title {
   font-size: 1.2em;
