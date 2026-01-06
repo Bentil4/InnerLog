@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:css": "sass styles:css",
-    "build": "tsc && npm run build:css",
+    "build": "tsc && sass build:css",
     "start": "ts-node src/journal.ts",
     "watch": "tsc -w"
   },
