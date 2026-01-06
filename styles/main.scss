@@ -1,0 +1,54 @@
+// @use "./_variables";
+// @use "./_mixins";
+// @use "./_reset";
+// @use "./_typography";
+// @use "./_app";
+// @use "./_journal-forms";
+// @use "_journal-list";
+// @use "_journal-item";
+// @use "./_journal";
+
+$primary-color: #007bff;
+
+.journal-app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__entries {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .journal-entry {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+
+    &--happy {
+      background-color: #ffeb3b;
+    }
+    &--sad {
+      background-color: #2196f3;
+    }
+    // Add for other moods
+
+    &__title {
+      font-size: 1.2em;
+    }
+    // Etc.
+  }
+
+  @media (max-width: 600px) {
+    &__entries {
+      grid-template-columns: 1fr;
+    }
+  }
+}
