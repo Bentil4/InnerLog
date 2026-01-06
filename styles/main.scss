@@ -1,19 +1,19 @@
-// @use "./_variables";
-// @use "./_mixins";
-// @use "./_reset";
-// @use "./_typography";
-// @use "./_app";
-// @use "./_journal-forms";
-// @use "_journal-list";
-// @use "_journal-item";
-// @use "./_journal";
-
 $primary-color: #007bff;
 
 .journal-app {
-  max-width: 800px;
+  display: flex;
   margin: 0 auto;
   padding: 20px;
+
+  &__sidebar {
+    margin-right: 20px;
+    width: 250px;
+  }
+
+  &__main {
+    flex-grow: 1;
+    max-width: 500px;
+  }
 
   &__form {
     display: flex;
@@ -23,7 +23,6 @@ $primary-color: #007bff;
 
   &__entries {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
   }
 
@@ -48,7 +47,7 @@ $primary-color: #007bff;
 
   @media (max-width: 600px) {
     &__entries {
-      grid-template-columns: 1fr;
+      //   grid-template-columns: 1fr;
     }
   }
 }

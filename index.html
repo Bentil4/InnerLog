@@ -8,29 +8,33 @@
   </head>
   <body>
     <main class="journal-app">
-      <form class="journal-app__form">
-        <input type="text" name="title" placeholder="Entry Title" required />
+      <aside class="journal-app__sidebar">
+        <section class="journal-app__entries"></section>
+      </aside>
 
-        <textarea
-          name="content"
-          placeholder="What's on your mind?"
-          required
-        ></textarea>
+      <section class="journal-app__main">
+        <form class="journal-app__form">
+          <input type="text" name="title" placeholder="Entry Title" required />
 
-        <select name="mood" required>
-          <option value="">Select Mood</option>
-        </select>
+          <textarea
+            name="content"
+            placeholder="What's on your mind?"
+            required
+          ></textarea>
 
-        <button type="submit">Add Entry</button>
-      </form>
+          <select name="mood" required>
+            <option value="">Select Mood</option>
+          </select>
 
-      <section class="journal-app__entries"></section>
+          <button type="submit">Add Entry</button>
+        </form>
 
-      <section class="journal-app__filters">
-        <select name="mood-filter">
-          <option value="">All Moods</option>
-        </select>
-        <input type="text" name="search" placeholder="Search entries..." />
+        <section class="journal-app__filters">
+          <select name="mood-filter">
+            <option value="">All Moods</option>
+          </select>
+          <input type="text" name="search" placeholder="Search entries..." />
+        </section>
       </section>
     </main>
 

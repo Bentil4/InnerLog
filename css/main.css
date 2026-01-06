@@ -1,7 +1,15 @@
 .journal-app {
-  max-width: 800px;
+  display: flex;
   margin: 0 auto;
   padding: 20px;
+}
+.journal-app__sidebar {
+  margin-right: 20px;
+  width: 250px;
+}
+.journal-app__main {
+  flex-grow: 1;
+  max-width: 500px;
 }
 .journal-app__form {
   display: flex;
@@ -10,7 +18,6 @@
 }
 .journal-app__entries {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
 }
 .journal-app .journal-entry {
@@ -26,11 +33,6 @@
 }
 .journal-app .journal-entry__title {
   font-size: 1.2em;
-}
-@media (max-width: 600px) {
-  .journal-app__entries {
-    grid-template-columns: 1fr;
-  }
 }
 
 /*# sourceMappingURL=main.css.map */
