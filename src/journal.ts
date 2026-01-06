@@ -72,3 +72,36 @@ export function editEntry(id: string, updates: Partial<JournalEntry>): void {
     saveEntries(journal);
   }
 }
+
+export function deleteEntry(id: string): void {
+  journal = journal.filter((entry) => entry.id !== id);
+  saveEntries(journal);
+}
+
+/**
+ * Filters the journal entries based on the given mood and search.
+ * If mood is given, only entries with the given mood are returned.
+ * If search is given, only entries with titles or content that include
+ * the given search string are returned.
+ * If neither mood nor search is given, all entries are returned.
+ * @param {Mood} [mood]  mood to filter by.
+ * @param {string} [search] search string to filter by.
+ * @returns {Journal} filtered journal entries.
+ */
+export function filterEntries(mood?: Mood, search?: string): Journal {
+  return journal.filter((entry) => {
+    const moodMatch = mood ? entry.mood === mood : true;
+    const searchMatch = search
+      ? entry.title.includes(search) || entry.content.includes(search)
+      : true;
+    return moodMatch && searchMatch;
+  });
+}
+
+/**
+ * Returns the current journal entries.
+ * @returns {Journal} The current journal entries.
+ * */
+export function getEntries(): Journal {
+  return journal;
+}
