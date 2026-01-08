@@ -1,4 +1,4 @@
-import { setupForm, setupFilters, renderEntries } from "./ui.js";
+import { setupForm, setupFilters, setupActions, renderEntries } from "./ui.js";
 import { loadEntries, saveEntries } from "./storage.js";
 
 export enum Mood {
@@ -73,6 +73,12 @@ export function editEntry(id: string, updates: Partial<JournalEntry>): void {
   }
 }
 
+/**
+ * Deletes a journal entry with the given id.
+ * If the entry is found, it is removed from the journal and the updated
+ * journal is saved to storage.
+ * @param {string} id The id of the entry to delete.
+ */
 export function deleteEntry(id: string): void {
   journal = journal.filter((entry) => entry.id !== id);
   saveEntries(journal);
@@ -106,11 +112,11 @@ export function getEntries(): Journal {
   return journal;
 }
 
-
 function init() {
   journal = loadEntries();
   setupForm();
   setupFilters();
+  setupActions();
   renderEntries(journal);
 }
 

@@ -2,66 +2,284 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
 .journal-app {
   font-family: "Montserrat", sans-serif;
   display: flex;
   margin: 0 auto;
   padding: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background: $color-neutral-900;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  min-height: calc(100vh - 40px);
+  box-sizing: border-box;
+
   &__sidebar {
     margin-right: 20px;
-    width: 250px;
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
   }
 
   &__main {
     flex-grow: 1;
-    max-width: 500px;
+    max-width: 600px;
+    height: 30rem;
+    padding: 20px;
+    background: $color-neutral-50;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
 
   &__form {
     display: flex;
     flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+
+    input,
+    textarea,
+    select {
+      padding: 12px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      padding: 12px;
+      background: $primary-color;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: darken($primary-color, 10%);
+      }
+    }
+  }
+
+  &__filters {
+    display: flex;
     gap: 10px;
+    margin-bottom: 20px;
+
+    select,
+    input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
   }
 
   &__entries {
     display: grid;
-    gap: 20px;
+    gap: 15px;
   }
 
   .journal-entry {
+    display: flex;
+    flex-direction: column;
     background-color: $color-neutral-50;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    color: $color-neutral-950;
+    padding: 20px;
+    border: 1px solid $color-neutral-50;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
 
     &--happy {
-      border-left: 10px solid $happy-bg;
-      color: $happy-text;
+      border-left: 5px solid $happy-bg;
     }
     &--sad {
-      border-left: 10px solid $sad-bg;
-      color: $sad-text;
+      border-left: 5px solid $sad-bg;
     }
     &--motivated {
-      border-left: 10px solid $motivated-bg;
-      color: $motivated-text;
+      border-left: 5px solid $motivated-bg;
     }
     &--stressed {
-      border-left: 10px solid $stressed-bg;
-      color: $stressed-text;
+      border-left: 5px solid $stressed-bg;
     }
     &--calm {
-      border-left: 10px solid $calm-bg;
-      color: $calm-text;
+      border-left: 5px solid $calm-bg;
     }
 
     &__title {
       font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    &__content {
+      font-size: 0.9em;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    &__mood,
+    &__timestamp {
+      font-size: 0.8em;
+      color: #666;
+      margin-right: 10px;
+    }
+
+    &__actions {
+      margin-top: 10px;
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 0.8em;
+        transition: background 0.3s ease;
+
+        &.journal-entry__edit {
+          background: #28a745;
+          color: white;
+
+          &:hover {
+            background: darken(#28a745, 10%);
+          }
+        }
+
+        &.journal-entry__delete {
+          background: #dc3545;
+          color: white;
+
+          &:hover {
+            background: darken(#dc3545, 10%);
+          }
+        }
+      }
+    }
+    &__timestamp {
+      font-size: 0.9rem;
+      opacity: 0.6;
+    }
+
+    &__mood {
+      margin-top: 10px;
+      font-weight: 600;
     }
   }
+}
 
-  @media (max-width: 600px) {
+.journal-entry__actions {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+.journal-entry__edit,
+.journal-entry__delete {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+}
+
+.journal-entry__edit {
+  background-color: $motivated-bg;
+  color: $color-neutral-50;
+
+  &:hover {
+    background-color: darken($motivated-bg, 10%);
+  }
+}
+.journal-entry__delete {
+  background-color: $stressed-bg;
+  color: $color-neutral-50;
+
+  &:hover {
+    background-color: darken($stressed-bg, 10%);
+  }
+}
+
+// Tablet
+@media (max-width: 1023px) {
+  .journal-app {
+    width: 100%;
+    display: flex;
+    flex-direction: column-reverse;
+
+    &__sidebar {
+      max-width: 100%;
+      padding: 0;
+    }
+
     &__entries {
+      grid-template-columns: repeat(1, 1fr);
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    &__main {
+      max-width: 100%;
+    }
+  }
+}
+// Mobile
+@media (max-width: 768px) {
+  .journal-app {
+    width: 100%;
+    flex-direction: column-reverse;
+    padding: 10px;
+    overflow-x: hidden;
+
+    &__sidebar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-right: 0;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    &__main {
+      max-width: 100%;
+    }
+    &__form {
+      gap: 10px;
+    }
+    &__filters {
+      flex-direction: column;
     }
   }
 }

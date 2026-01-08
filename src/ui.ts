@@ -1,6 +1,15 @@
 import type { JournalEntry } from "./journal.js";
 import { Mood } from "./journal.js";
-import { addEntry, filterEntries, getEntries } from "./journal.js";
+import {
+  addEntry,
+  editEntry,
+  deleteEntry,
+  filterEntries,
+  getEntries,
+  findByProperty,
+} from "./journal.js";
+
+let editingId: string | null = null;
 
 /**
  * Returns an HTML string representing a single journal entry.
@@ -14,16 +23,20 @@ import { addEntry, filterEntries, getEntries } from "./journal.js";
  */
 const entryTemplate = (entry: JournalEntry): string => `
     <section class="journal-entry journal-entry--${entry.mood.toLowerCase()}">
+        <div>
         <h3 class="journal-entry__title">${entry.title}</h3>
         <p class="journal-entry__content">${entry.content}</p>
         <span class="journal-entry__mood">${entry.mood}</span>
         <span class="journal-entry__timestamp">${new Date(
           entry.timestamp
         ).toLocaleString()}</span>
+        </div>
+        <div class="journal-entry__actions">
         <button class="journal-entry__edit" data-id="${entry.id}">Edit</button>
         <button class="journal-entry__delete" data-id="${
           entry.id
         }">Delete</button>
+        </div>
     </section>
 `;
 
@@ -56,7 +69,16 @@ export function setupForm(): void {
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
     const mood = formData.get("mood") as Mood;
-    addEntry({ title, content, mood });
+    if (editingId) {
+      editEntry(editingId, { title, content, mood });
+      editingId = null;
+      const button = form.querySelector(
+        'button[type="submit"]'
+      ) as HTMLButtonElement;
+      button.textContent = "Add Entry";
+    } else {
+      addEntry({ title, content, mood });
+    }
     form.reset();
     renderEntries(getEntries());
   });
@@ -107,5 +129,48 @@ export function setupFilters(): void {
     option.value = mood;
     option.text = mood;
     moodFilter.add(option);
+  });
+}
+
+/**
+ * Sets up event listeners for the edit and delete buttons in the journal
+ * entries section.
+ * When an edit button is clicked, the corresponding entry is found and the
+ * journal form is populated with the entry's data. The form submit button
+ * is also updated to display "Update Entry".
+ * When a delete button is clicked, the corresponding entry is deleted and the
+ * updated journal entries are rendered.
+ */
+export function setupActions(): void {
+  const container = document.querySelector(
+    ".journal-app__entries"
+  ) as HTMLElement;
+  container.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains("journal-entry__edit")) {
+      const id = target.dataset.id!;
+      const entry = findByProperty(getEntries(), "id", id);
+      if (entry) {
+        const form = document.querySelector(
+          ".journal-app__form"
+        ) as HTMLFormElement;
+        (form.querySelector('input[name="title"]') as HTMLInputElement).value =
+          entry.title;
+        (
+          form.querySelector('textarea[name="content"]') as HTMLTextAreaElement
+        ).value = entry.content;
+        (form.querySelector('select[name="mood"]') as HTMLSelectElement).value =
+          entry.mood;
+        editingId = id;
+        const button = form.querySelector(
+          'button[type="submit"]'
+        ) as HTMLButtonElement;
+        button.textContent = "Update Entry";
+      }
+    } else if (target.classList.contains("journal-entry__delete")) {
+      const id = target.dataset.id!;
+      deleteEntry(id);
+      renderEntries(getEntries());
+    }
   });
 }
