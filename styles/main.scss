@@ -16,9 +16,8 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
-  background: $color-neutral-900;
-
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  background: $light-bg;
+  color: $light-text;
   min-height: calc(100vh - 40px);
   box-sizing: border-box;
 
@@ -27,7 +26,7 @@ body {
     width: 300px;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 0 10px $color-neutral-300;
   }
 
   &__main {
@@ -70,7 +69,7 @@ body {
     button {
       padding: 12px;
       background: $primary-color;
-      color: white;
+      color: $color-neutral-100;
       border: none;
       border-radius: 8px;
       font-size: 1em;
@@ -81,6 +80,15 @@ body {
         background: darken($primary-color, 10%);
       }
     }
+  }
+
+  &__filter-title {
+    background-color: $primary-color;
+    padding: 10px 20px;
+    color: $color-neutral-100;
+    width: 18%;
+    border-radius: 5px;
+    font-weight: 700;
   }
 
   &__filters {
@@ -112,7 +120,6 @@ body {
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    width: 100%;
 
     &:hover {
       transform: translateY(-2px);
@@ -233,28 +240,33 @@ body {
 // Tablet
 @media (max-width: 1023px) {
   .journal-app {
-    width: 100%;
     display: flex;
     flex-direction: column-reverse;
 
     &__sidebar {
-      max-width: 100%;
+      width: 100%;
       padding: 0;
+      margin-right: 0;
+      box-shadow: none;
     }
 
     &__entries {
-      grid-template-columns: repeat(1, 1fr);
-      width: 90%;
+      max-width: 100%;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      padding: 10px 0;
+    }
+
+    &__entry {
+      width: 100%;
     }
     &__main {
       max-width: 100%;
     }
   }
 }
+
 // Mobile
 @media (max-width: 768px) {
   .journal-app {
@@ -271,6 +283,8 @@ body {
       margin-right: 0;
       margin-bottom: 20px;
       width: 100%;
+      padding: 0;
+      box-shadow: none;
     }
     &__main {
       max-width: 100%;
@@ -278,8 +292,17 @@ body {
     &__form {
       gap: 10px;
     }
+
+    &__filter-title {
+      width: 30%;
+      text-align: center;
+    }
     &__filters {
       flex-direction: column;
     }
+  }
+
+  .journal-entries {
+    width: 100%;
   }
 }

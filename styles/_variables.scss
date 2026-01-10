@@ -5,5 +5,22 @@ $motivated-bg: #6bcf63;
 $stressed-bg: #e63946;
 $calm-bg: #a7c7e7;
 $color-neutral-50: #f5f7fa;
+$color-neutral-100: #e5e7eb;
+$color-neutral-200: #d1d5db;
+$color-neutral-300: #9ca3af;
+$color-neutral-400: #6b7280;
+$color-neutral-500: #4b5563;
+$color-neutral-600: #374151;
 $color-neutral-950: #0e121b;
 $color-neutral-900: #191b25;
+
+// light theme colors
+body.light-theme {
+  $light-bg: $color-neutral-100;
+  $light-text: $color-neutral-950;
+}
+// Dark theme color
+body.dark-theme {
+  $light-bg: $color-neutral-950;
+  $light-text: $color-neutral-100;
+}
