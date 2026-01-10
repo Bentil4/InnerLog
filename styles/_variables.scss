@@ -26,6 +26,8 @@ body.light-theme {
   --background-color: $color-neutral-100;
   --text-color: $color-neutral-950;
   --forebackground-color: $color-neutral-50;
+  --forebackground-color: $color-neutral-50;
+  --toggle-main-color: $color-neutral-600;
 }
 
 // Dark theme color
@@ -33,4 +35,6 @@ body.dark-theme {
   --background-color: #{$color-neutral-950};
   --text-color: #{$color-neutral-100};
   --forebackground-color: #{$color-neutral-800};
+  --forebackground-color: #{$color-neutral-800};
+  --toggle-main-color: $color-neutral-300;
 }
