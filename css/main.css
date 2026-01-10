@@ -3,12 +3,16 @@
   --background-color: $color-neutral-100;
   --text-color: $color-neutral-950;
   --forebackground-color: $color-neutral-50;
+  --forebackground-color: $color-neutral-50;
+  --toggle-main-color: $color-neutral-600;
 }
 
 body.dark-theme {
   --background-color: #0e121b;
   --text-color: #e5e7eb;
   --forebackground-color: #111827;
+  --forebackground-color: #111827;
+  --toggle-main-color: $color-neutral-300;
 }
 
 body {
@@ -230,21 +234,54 @@ body {
 .toggle {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  left: 0;
   padding: 10px 15px;
-  background-color: #3b5bfd;
+  background-color: var(--toggle-main-color);
   color: #e5e7eb;
+  width: 90px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 }
 .toggle:hover {
-  background-color: rgb(8.5151515152, 48.7575757576, 252.4848484848);
+  background-color: var(--background-color);
+}
+.toggle img {
+  background-color: #e5e7eb;
+}
+.toggle #toggleImg {
+  border-radius: 0 10px 10px 0;
+  width: 90px;
+  height: 40px;
+  padding: 10px;
 }
 
 @media (max-width: 1023px) {
+  .toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    padding: 10px 15px;
+    background-color: var(--toggle-main-color);
+    color: #e5e7eb;
+    width: 30px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  .toggle img {
+    background-color: #e5e7eb;
+  }
+  .toggle #toggleImg {
+    border-radius: 0 10px 10px 0;
+    width: 30px;
+    height: 10px;
+    padding: 10px;
+  }
   .journal-app {
     display: flex;
     flex-direction: column-reverse;

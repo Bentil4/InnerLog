@@ -135,15 +135,19 @@ body {
     &--happy {
       border-left: 5px solid $happy-bg;
     }
+
     &--sad {
       border-left: 5px solid $sad-bg;
     }
+
     &--motivated {
       border-left: 5px solid $motivated-bg;
     }
+
     &--stressed {
       border-left: 5px solid $stressed-bg;
     }
+
     &--calm {
       border-left: 5px solid $calm-bg;
     }
@@ -199,6 +203,7 @@ body {
         }
       }
     }
+
     &__timestamp {
       font-size: 0.9rem;
       opacity: 0.6;
@@ -216,6 +221,7 @@ body {
   display: flex;
   gap: 10px;
 }
+
 .journal-entry__edit,
 .journal-entry__delete {
   margin-top: 10px;
@@ -234,6 +240,7 @@ body {
     background-color: darken($motivated-bg, 10%);
   }
 }
+
 .journal-entry__delete {
   background-color: $stressed-bg;
   color: $color-neutral-50;
@@ -246,23 +253,64 @@ body {
 .toggle {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  left: 0;
   padding: 10px 15px;
-  background-color: $primary-color;
+  background-color: var(--toggle-main-color);
   color: $color-neutral-100;
+  width: 90px;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: darken($primary-color, 10%);
+    background-color: var(--background-color);
+  }
+
+  & img {
+    background-color: $color-neutral-100;
+  }
+
+  & #toggleImg {
+    border-radius: 0 10px 10px 0;
+    width: 90px;
+    height: 40px;
+    padding: 10px;
   }
 }
 
 // Tablet
 @media (max-width: 1023px) {
+  .toggle {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    padding: 10px 15px;
+    background-color: var(--toggle-main-color);
+    color: $color-neutral-100;
+    width: 30px;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      // background-color: darken($primary-color, 10%);
+    }
+
+    & img {
+      background-color: $color-neutral-100;
+    }
+
+    & #toggleImg {
+      border-radius: 0 10px 10px 0;
+      width: 30px;
+      height: 10px;
+      padding: 10px;
+    }
+  }
   .journal-app {
     display: flex;
     flex-direction: column-reverse;
@@ -285,6 +333,7 @@ body {
     &__entry {
       width: 100%;
     }
+
     &__main {
       max-width: 100%;
     }
@@ -310,9 +359,11 @@ body {
       padding: 0;
       box-shadow: none;
     }
+
     &__main {
       max-width: 100%;
     }
+
     &__form {
       gap: 10px;
     }
@@ -321,6 +372,7 @@ body {
       width: 30%;
       text-align: center;
     }
+
     &__filters {
       flex-direction: column;
     }

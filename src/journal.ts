@@ -117,11 +117,12 @@ export function getEntries(): Journal {
 function init() {
   const toggle = document.getElementById("toggle") as HTMLButtonElement;
   const body = document.body;
-
+  const toggleImg = document.getElementById("toggleImg") as HTMLImageElement;
+  toggleImg.src = "./assets/images/icon-sun.svg";
   toggle.addEventListener("click", () => {
-    console.log("clicked");
-
-    body.classList.toggle("dark-theme");
+    body.classList.toggle("dark-theme")
+      ? (toggleImg.src = "./assets/images/icon-moon.svg")
+      : (toggleImg.src = "./assets/images/icon-sun.svg");
   });
 
   journal = loadEntries();
