@@ -7,6 +7,14 @@
   --toggle-main-color: $color-neutral-600;
 }
 
+body.light-theme {
+  --background-color: $color-neutral-100;
+  --text-color: $color-neutral-950;
+  --forebackground-color: $color-neutral-50;
+  --forebackground-color: $color-neutral-50;
+  --toggle-main-color: $color-neutral-600;
+}
+
 body.dark-theme {
   --background-color: #0e121b;
   --text-color: #e5e7eb;
@@ -65,6 +73,7 @@ body {
   font-size: 1em;
   transition: border-color 0.3s ease;
   background-color: transparent;
+  color: var(--text-color);
 }
 .journal-app__form input:focus,
 .journal-app__form textarea:focus,
@@ -272,6 +281,9 @@ body {
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     transition: background-color 0.3s ease;
+  }
+  .toggle:hover {
+    background-color: var(--background-color);
   }
   .toggle img {
     background-color: #e5e7eb;

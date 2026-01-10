@@ -1,5 +1,5 @@
 import { setupForm, setupFilters, setupActions, renderEntries } from "./ui.js";
-import { loadEntries, saveEntries } from "./storage.js";
+import { loadEntries, saveEntries, loadTheme, saveTheme } from "./storage.js";
 
 export enum Mood {
   HAPPY = "HAPPY",
@@ -118,11 +118,25 @@ function init() {
   const toggle = document.getElementById("toggle") as HTMLButtonElement;
   const body = document.body;
   const toggleImg = document.getElementById("toggleImg") as HTMLImageElement;
-  toggleImg.src = "./assets/images/icon-sun.svg";
+
+  // Load saved theme
+  const savedTheme = loadTheme();
+  if (savedTheme === "dark") {
+    body.classList.add("dark-theme");
+    toggleImg.src = "./assets/images/icon-moon.svg";
+  } else {
+    toggleImg.src = "./assets/images/icon-sun.svg";
+  }
+
   toggle.addEventListener("click", () => {
-    body.classList.toggle("dark-theme")
-      ? (toggleImg.src = "./assets/images/icon-moon.svg")
-      : (toggleImg.src = "./assets/images/icon-sun.svg");
+    const isDark = body.classList.toggle("dark-theme");
+    if (isDark) {
+      toggleImg.src = "./assets/images/icon-moon.svg";
+      saveTheme("dark");
+    } else {
+      toggleImg.src = "./assets/images/icon-sun.svg";
+      saveTheme("light");
+    }
   });
 
   journal = loadEntries();
