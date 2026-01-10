@@ -112,7 +112,18 @@ export function getEntries(): Journal {
   return journal;
 }
 
+//toggle
+
 function init() {
+  const toggle = document.getElementById("toggle") as HTMLButtonElement;
+  const body = document.body;
+
+  toggle.addEventListener("click", () => {
+    console.log("clicked");
+
+    body.classList.toggle("dark-theme");
+  });
+
   journal = loadEntries();
   setupForm();
   setupFilters();

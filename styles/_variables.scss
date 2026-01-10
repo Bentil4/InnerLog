@@ -11,6 +11,8 @@ $color-neutral-300: #9ca3af;
 $color-neutral-400: #6b7280;
 $color-neutral-500: #4b5563;
 $color-neutral-600: #374151;
+$color-neutral-700: #1f2937;
+$color-neutral-800: #111827;
 $color-neutral-950: #0e121b;
 $color-neutral-900: #191b25;
 
@@ -19,8 +21,16 @@ body.light-theme {
   $light-bg: $color-neutral-100;
   $light-text: $color-neutral-950;
 }
+
+:root {
+  --background-color: $color-neutral-100;
+  --text-color: $color-neutral-950;
+  --forebackground-color: $color-neutral-50;
+}
+
 // Dark theme color
 body.dark-theme {
-  $light-bg: $color-neutral-950;
-  $light-text: $color-neutral-100;
+  --background-color: #{$color-neutral-950};
+  --text-color: #{$color-neutral-100};
+  --forebackground-color: #{$color-neutral-800};
 }
