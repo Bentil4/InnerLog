@@ -16,9 +16,9 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
-  background: $light-bg;
-  color: $light-text;
-  min-height: calc(100vh - 40px);
+  background: var(--background-color);
+  color: var(--text-color);
+  min-height: 100vh;
   box-sizing: border-box;
 
   &__sidebar {
@@ -34,7 +34,7 @@ body {
     max-width: 600px;
     height: 30rem;
     padding: 20px;
-    background: $color-neutral-50;
+    background: var(--forebackground-color);
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   }
@@ -53,6 +53,7 @@ body {
       border-radius: 8px;
       font-size: 1em;
       transition: border-color 0.3s ease;
+      background-color: transparent;
 
       &:focus {
         outline: none;
@@ -80,6 +81,10 @@ body {
         background: darken($primary-color, 10%);
       }
     }
+
+    select {
+      color: var(--text-color);
+    }
   }
 
   &__filter-title {
@@ -102,6 +107,8 @@ body {
       padding: 10px;
       border: 1px solid #ddd;
       border-radius: 5px;
+      background-color: transparent;
+      color: var(--text-color);
     }
   }
 
@@ -113,10 +120,9 @@ body {
   .journal-entry {
     display: flex;
     flex-direction: column;
-    background-color: $color-neutral-50;
-    color: $color-neutral-950;
+    background-color: var(--forebackground-color);
+    color: var(--text-color);
     padding: 20px;
-    border: 1px solid $color-neutral-50;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -234,6 +240,24 @@ body {
 
   &:hover {
     background-color: darken($stressed-bg, 10%);
+  }
+}
+
+.toggle {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 15px;
+  background-color: $primary-color;
+  color: $color-neutral-100;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
   }
 }
 
