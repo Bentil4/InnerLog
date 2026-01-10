@@ -1,6 +1,7 @@
 import type { Journal, JournalEntry } from "./journal.js";
 
 const STORAGE_KEY = "journalEntries";
+const THEME_KEY = "theme";
 
 /**
  * Loads the journal entries from localStorage.
@@ -25,4 +26,21 @@ export function loadEntries(): Journal {
  */
 export function saveEntries(entries: Journal): void {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+}
+
+/**
+ * Loads the saved theme from localStorage.
+ * Returns "light" if no theme is saved.
+ * @returns {string} The saved theme ("light" or "dark").
+ */
+export function loadTheme(): string {
+  return localStorage.getItem(THEME_KEY) || "light";
+}
+
+/**
+ * Saves the given theme to localStorage.
+ * @param {string} theme The theme to save ("light" or "dark").
+ */
+export function saveTheme(theme: string): void {
+  localStorage.setItem(THEME_KEY, theme);
 }

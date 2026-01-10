@@ -16,13 +16,16 @@ $color-neutral-800: #111827;
 $color-neutral-950: #0e121b;
 $color-neutral-900: #191b25;
 
-// light theme colors
-body.light-theme {
-  $light-bg: $color-neutral-100;
-  $light-text: $color-neutral-950;
+:root {
+  --background-color: $color-neutral-100;
+  --text-color: $color-neutral-950;
+  --forebackground-color: $color-neutral-50;
+  --forebackground-color: $color-neutral-50;
+  --toggle-main-color: $color-neutral-600;
 }
 
-:root {
+// light theme colors
+body.light-theme {
   --background-color: $color-neutral-100;
   --text-color: $color-neutral-950;
   --forebackground-color: $color-neutral-50;
