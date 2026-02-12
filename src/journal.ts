@@ -31,8 +31,10 @@ export type Journal = JournalEntry[];
 export function findByProperty<T>(
   list: T[],
   key: keyof T,
-  value: T[keyof T]
+  value: T[keyof T],
 ): T | undefined {
+
+
   return list.find((item) => item[key] === value);
 }
 
@@ -47,7 +49,7 @@ let journal: Journal = loadEntries();
  * The partial entry to add, without an id or timestamp.
  */
 export function addEntry(
-  partialEntry: Omit<JournalEntry, "id" | "timestamp">
+  partialEntry: Omit<JournalEntry, "id" | "timestamp">,
 ): void {
   const entry: JournalEntry = {
     id: crypto.randomUUID(),
@@ -94,13 +96,20 @@ export function deleteEntry(id: string): void {
  * @param {string} [search] search string to filter by.
  * @returns {Journal} filtered journal entries.
  */
-export function filterEntries(mood?: Mood, search?: string): Journal {
+
+export function filterEntries(mood?: string, search?: string): Journal {
+  const moodLower = mood?.trim().toLowerCase();
+  const searchLower = search?.trim().toLowerCase();
+
   return journal.filter((entry) => {
-    const moodMatch = mood ? entry.mood === mood : true;
-    const searchMatch = search
-      ? entry.title.includes(search) || entry.content.includes(search)
-      : true;
-    return moodMatch && searchMatch;
+    const moodMatch = moodLower ? entry.mood.toLowerCase() === moodLower : true;
+
+    if (!searchLower) return moodMatch;
+
+    const titleMatch = entry.title.toLowerCase().includes(searchLower);
+    const contentMatch = entry.content.toLowerCase().includes(searchLower);
+
+    return moodMatch && (titleMatch || contentMatch);
   });
 }
 
